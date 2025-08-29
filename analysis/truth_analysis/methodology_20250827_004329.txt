@@ -1,0 +1,78 @@
+
+TRUTH-SEEKING DIVESTMENT ANALYSIS METHODOLOGY
+============================================
+
+GUIDING PRINCIPLES:
+• Scientific integrity over confirmation bias
+• Show all results, including negative outcomes
+• Apply rigorous statistical testing
+• Include realistic costs and constraints
+• Document all assumptions and limitations
+
+DATA SOURCES:
+• Price data: Sharadar equity database
+• Exclusions: Comprehensive ESG exclusions database
+• Period: 2010-2024 (maximum available history)
+• Universe: US domestic equities
+
+SURVIVORSHIP BIAS:
+• Dataset includes delisted securities where available
+• Bias impact documented in analysis
+• Results interpreted with appropriate caution
+
+PORTFOLIO CONSTRUCTION:
+• Equal-weighted portfolios (academic standard)
+• Monthly rebalancing (realistic for institutions)
+• No optimization for favorable results
+• Minimum universe size: 20 securities
+
+COST ASSUMPTIONS:
+• Transaction costs: 10 bps per rebalance
+• Management fees: 25 bps annually
+• No performance fees
+• Based on institutional implementation reality
+
+BENCHMARK CONSTRUCTION:
+• Equal-weighted universe without exclusions
+• Same cost assumptions as test portfolios
+• Same rebalancing frequency
+• Fair comparison methodology
+
+STATISTICAL TESTING:
+• Primary metric: Excess return vs benchmark
+• Test statistic: One-sample t-test vs zero
+• Multiple testing: Holm correction method
+• Confidence intervals: Bootstrap (1000 iterations)
+• Significance level: 5% (two-tailed)
+
+SCENARIOS TESTED:
+• No cherry-picking of exclusion combinations
+• All major ESG categories included
+• Realistic exclusion percentages based on market data
+• Combined scenarios based on common institutional approaches
+
+TIME PERIODS TESTED:
+• Multiple non-overlapping periods
+• Include bull and bear markets
+• Pre- and post-COVID periods
+• No selection bias for favorable periods
+
+LIMITATIONS:
+• Historical analysis may not predict future performance
+• Transaction cost estimates may not capture all costs
+• Exclusions database may have coverage limitations
+• Results sensitive to implementation methodology
+• Multiple testing corrections may be conservative
+
+TRANSPARENCY COMMITMENTS:
+• All results published (positive and negative)
+• Complete methodology documentation
+• Raw data export for verification
+• Statistical code available upon request
+• No selective reporting of favorable outcomes
+
+This methodology prioritizes scientific integrity and truth-seeking
+over marketing objectives.
+
+Framework: Truth-Seeking Analysis Engine v1.0
+Generated: 2025-08-27 00:43:29

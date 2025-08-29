@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Capital - Strategy Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .strategy-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid;
+        }
+        .strategy-header {
+            margin-bottom: 15px;
+        }
+        .strategy-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .strategy-description {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .strategy-metrics {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .metric {
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .metric-label {
+            font-size: 0.8em;
+            color: #666;
+        }
+        .chart-container {
+            height: 250px;
+            margin: 15px 0;
+        }
+        .holdings-list {
+            margin-top: 15px;
+        }
+        .holding-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .holding-symbol {
+            font-weight: bold;
+        }
+        .holding-weight {
+            color: #666;
+        }
+        .vertical-summary {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .comparison-table th {
+            background-color: #f8f9fa;
+        }
+        .strategy-selector {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .strategy-btn {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .strategy-btn:hover {
+            background: #5a6fd8;
+        }
+        .strategy-btn.active {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ETHICAL CAPITAL</h1>
+        <div class="subtitle">Investment Strategy Dashboard</div>
+        <div>Current Portfolio Analysis - August 2025</div>
+    </div>
+
+    <!-- Strategy Selection -->
+    <div class="strategy-selector">
+        <button class="strategy-btn active" onclick="showAllStrategies()">All Strategies</button>
+        <button class="strategy-btn" onclick="showStrategy('12822')">Core Growth</button>
+        <button class="strategy-btn" onclick="showStrategy('20704')">Diversified</button>
+        <button class="strategy-btn" onclick="showStrategy('33055')">Model Portfolio</button>
+    </div>
+
+    <!-- Vertical Exposure Comparison -->
+    <div class="vertical-summary">
+        <h3>Vertical Exposure by Strategy</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Strategy</th>
+                    <th>Positions</th>
+                    <th>Value</th>
+                    <th>Infrastructure</th>
+                    <th>Innovation</th>
+                    <th>Lending</th>
+                    <th>Real Estate</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+                <tr>
+                    <td><strong>Core Growth Strategy</strong><br><small>Account 12822</small></td>
+                    <td>36</td>
+                    <td>$122,908</td>
+                    <td>29.1%</td>
+                    <td>31.1%</td>
+                    <td>21.1%</td>
+                    <td>16.7%</td>
+                </tr>
+        
+                <tr>
+                    <td><strong>Diversified Strategy</strong><br><small>Account 20704</small></td>
+                    <td>63</td>
+                    <td>$37,645</td>
+                    <td>27.2%</td>
+                    <td>35.1%</td>
+                    <td>13.9%</td>
+                    <td>15.8%</td>
+                </tr>
+        
+                <tr>
+                    <td><strong>Model Portfolio (Reference)</strong><br><small>Account 33055</small></td>
+                    <td>36</td>
+                    <td>$202</td>
+                    <td>36.5%</td>
+                    <td>37.6%</td>
+                    <td>17.0%</td>
+                    <td>7.9%</td>
+                </tr>
+        
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Individual Strategy Cards -->
+    <div class="strategy-grid">
+    
+        <div class="strategy-card" style="border-left-color: #667eea" id="strategy-12822">
+            <div class="strategy-header">
+                <div class="strategy-name" style="color: #667eea">Core Growth Strategy</div>
+                <div class="strategy-description">Primary growth-oriented strategy with concentrated positions</div>
+            </div>
+            
+            <div class="strategy-metrics">
+                <div class="metric">
+                    <div class="metric-value">36</div>
+                    <div class="metric-label">Current Positions</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">$122,908</div>
+                    <div class="metric-label">Total Value</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">55%</div>
+                    <div class="metric-label">Top 5 Concentration</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="verticalChart12822"></canvas>
+            </div>
+
+            <div class="holdings-list">
+                <h4>Top Holdings:</h4>
+        
+                <div class="holding-item">
+                    <span class="holding-symbol">AGM</span>
+                    <span class="holding-weight">12.1%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">ARE</span>
+                    <span class="holding-weight">11.8%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">VCISY</span>
+                    <span class="holding-weight">11.3%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">MELI</span>
+                    <span class="holding-weight">10.4%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">NTDOY</span>
+                    <span class="holding-weight">9.1%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">CROX</span>
+                    <span class="holding-weight">8.7%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">BMI</span>
+                    <span class="holding-weight">6.9%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">AHH</span>
+                    <span class="holding-weight">6.5%</span>
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="strategy-card" style="border-left-color: #764ba2" id="strategy-20704">
+            <div class="strategy-header">
+                <div class="strategy-name" style="color: #764ba2">Diversified Strategy</div>
+                <div class="strategy-description">Broad diversification with 63+ positions across all verticals</div>
+            </div>
+            
+            <div class="strategy-metrics">
+                <div class="metric">
+                    <div class="metric-value">63</div>
+                    <div class="metric-label">Current Positions</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">$37,645</div>
+                    <div class="metric-label">Total Value</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">43%</div>
+                    <div class="metric-label">Top 5 Concentration</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="verticalChart20704"></canvas>
+            </div>
+
+            <div class="holdings-list">
+                <h4>Top Holdings:</h4>
+        
+                <div class="holding-item">
+                    <span class="holding-symbol">GMIIX</span>
+                    <span class="holding-weight">12.8%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">ECAT</span>
+                    <span class="holding-weight">12.6%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">TEAF</span>
+                    <span class="holding-weight">7.5%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">MELI</span>
+                    <span class="holding-weight">5.3%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">MID</span>
+                    <span class="holding-weight">5.1%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">VCISY</span>
+                    <span class="holding-weight">5.1%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">AGMPRG</span>
+                    <span class="holding-weight">4.8%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">NTDOY</span>
+                    <span class="holding-weight">4.7%</span>
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="strategy-card" style="border-left-color: #f093fb" id="strategy-33055">
+            <div class="strategy-header">
+                <div class="strategy-name" style="color: #f093fb">Model Portfolio (Reference)</div>
+                <div class="strategy-description">Reference account with fractional shares for modeling</div>
+            </div>
+            
+            <div class="strategy-metrics">
+                <div class="metric">
+                    <div class="metric-value">36</div>
+                    <div class="metric-label">Current Positions</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">$202</div>
+                    <div class="metric-label">Total Value</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">61%</div>
+                    <div class="metric-label">Top 5 Concentration</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="verticalChart33055"></canvas>
+            </div>
+
+            <div class="holdings-list">
+                <h4>Top Holdings:</h4>
+        
+                <div class="holding-item">
+                    <span class="holding-symbol">VCISY</span>
+                    <span class="holding-weight">14.2%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">MELI</span>
+                    <span class="holding-weight">14.2%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">NTDOY</span>
+                    <span class="holding-weight">12.0%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">LI</span>
+                    <span class="holding-weight">10.8%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">BMI</span>
+                    <span class="holding-weight">9.4%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">AGM</span>
+                    <span class="holding-weight">9.3%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">LMND</span>
+                    <span class="holding-weight">7.9%</span>
+                </div>
+            
+                <div class="holding-item">
+                    <span class="holding-symbol">SKM</span>
+                    <span class="holding-weight">7.6%</span>
+                </div>
+            
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        const strategies = {"12822": {"account_id": "12822", "total_value": 122908.02, "holdings": [{"symbol": "AGM", "shares": 238.331, "transactions": 199, "last_activity": "2025-03-31", "avg_price": 143.94491271186442, "net_investment": 14931.55, "weight_pct": 12.148556294373629}, {"symbol": "ARE", "shares": 235.928, "transactions": 221, "last_activity": "2025-03-06", "avg_price": 143.26857288135594, "net_investment": 14497.2, "weight_pct": 11.795161943053024}, {"symbol": "VCISY", "shares": 497.132, "transactions": 64, "last_activity": "2025-03-06", "avg_price": 29.72417391304348, "net_investment": 13842.66, "weight_pct": 11.262617362154236}, {"symbol": "MELI", "shares": 10.286, "transactions": 37, "last_activity": "2025-03-06", "avg_price": 1691.3075594594595, "net_investment": 12810.52, "weight_pct": 10.422851169516848}, {"symbol": "NTDOY", "shares": 1018.23524, "transactions": 156, "last_activity": "2025-03-06", "avg_price": 25.627201311926605, "net_investment": 11222.24, "weight_pct": 9.130600265141362}, {"symbol": "CROX", "shares": 282.58, "transactions": 119, "last_activity": "2025-03-06", "avg_price": 109.01213565217391, "net_investment": 10742.23, "weight_pct": 8.74005618185046}, {"symbol": "BMI", "shares": 128.915, "transactions": 130, "last_activity": "2025-03-14", "avg_price": 160.572809375, "net_investment": 8449.58, "weight_pct": 6.874718183565238}, {"symbol": "AHH", "shares": 2818.026, "transactions": 221, "last_activity": "2025-03-06", "avg_price": 12.306357355932203, "net_investment": 7999.56, "weight_pct": 6.508574460804104}, {"symbol": "AMAL", "shares": 595.301, "transactions": 66, "last_activity": "2025-03-06", "avg_price": 26.45946129032258, "net_investment": 6854.08, "weight_pct": 5.576592967651744}, {"symbol": "SKM", "shares": 301.672, "transactions": 16, "last_activity": "2025-03-06", "avg_price": 22.56545, "net_investment": 6683.27, "weight_pct": 5.4376191236340805}, {"symbol": "BLD", "shares": 77.856, "transactions": 115, "last_activity": "2024-09-03", "avg_price": 264.75914594594593, "net_investment": -6175.02, "weight_pct": -5.024098508787303}, {"symbol": "LI", "shares": 213.804, "transactions": 4, "last_activity": "2025-03-06", "avg_price": 29.15425, "net_investment": 6138.0, "weight_pct": 4.993978423865261}, {"symbol": "ENPH", "shares": 247.698, "transactions": 109, "last_activity": "2024-07-05", "avg_price": 181.6345657142857, "net_investment": 5868.6, "weight_pct": 4.774790123541165}, {"symbol": "LMND", "shares": 1487.759, "transactions": 28, "last_activity": "2025-03-06", "avg_price": 17.59415357142857, "net_investment": 5292.5, "weight_pct": 4.3060656253351075}, {"symbol": "ELF", "shares": 193.647, "transactions": 116, "last_activity": "2025-03-06", "avg_price": 88.90847946428572, "net_investment": -5279.21, "weight_pct": -4.295252661299076}, {"symbol": "BDORY", "shares": 821.684, "transactions": 22, "last_activity": "2025-04-01", "avg_price": 4.97934425, "net_investment": 4090.73, "weight_pct": 3.328285656216738}, {"symbol": "FLG", "shares": 351.664, "transactions": 21, "last_activity": "2025-03-17", "avg_price": 10.886142857142858, "net_investment": 3673.02, "weight_pct": 2.988429884396478}, {"symbol": "EFGSY", "shares": 402.848, "transactions": 10, "last_activity": "2025-03-06", "avg_price": 20.273, "net_investment": 3672.91, "weight_pct": 2.9883403865752616}, {"symbol": "ASML", "shares": 35.508, "transactions": 139, "last_activity": "2024-08-07", "avg_price": 705.7241592592593, "net_investment": -3540.09, "weight_pct": -2.8802758355394547}, {"symbol": "CKHUY", "shares": 629.693, "transactions": 11, "last_activity": "2025-03-06", "avg_price": 5.702, "net_investment": 3435.07, "weight_pct": 2.7948298247746566}, {"symbol": "DUOL", "shares": 223.128, "transactions": 124, "last_activity": "2025-03-06", "avg_price": 158.57929979661017, "net_investment": -3420.56, "weight_pct": -2.78302424853968}, {"symbol": "PWR", "shares": 110.18198, "transactions": 218, "last_activity": "2025-03-06", "avg_price": 176.0455939130435, "net_investment": -2588.6, "weight_pct": -2.106127818184688}, {"symbol": "IIPR", "shares": 31.172, "transactions": 7, "last_activity": "2025-03-06", "avg_price": 116.8525, "net_investment": 2477.06, "weight_pct": 2.0153770274714375}, {"symbol": "CPRT", "shares": 498.88557, "transactions": 119, "last_activity": "2024-09-03", "avg_price": 87.15444594594595, "net_investment": -2404.08, "weight_pct": -1.955999291177256}, {"symbol": "HDB", "shares": 349.902, "transactions": 128, "last_activity": "2024-02-09", "avg_price": 64.22927333333334, "net_investment": 1781.85, "weight_pct": 1.449742661219341}, {"symbol": "AMT", "shares": 35.112, "transactions": 118, "last_activity": "2023-07-18", "avg_price": 232.67857727272727, "net_investment": 1719.18, "weight_pct": 1.3987533116227893}, {"symbol": "WELL", "shares": 286.638, "transactions": 98, "last_activity": "2024-02-09", "avg_price": 77.64411294444444, "net_investment": -1699.17, "weight_pct": -1.3824728443270016}, {"symbol": "HDSN", "shares": 243.477, "transactions": 1, "last_activity": "2025-03-06", "avg_price": 5.5299, "net_investment": 1346.4, "weight_pct": 1.0954533316865733}, {"symbol": "CTAS", "shares": 18.096, "transactions": 163, "last_activity": "2024-01-12", "avg_price": 451.422775862069, "net_investment": -846.18, "weight_pct": -0.6884660577885804}, {"symbol": "TDOC", "shares": 289.746, "transactions": 6, "last_activity": "2024-03-12", "avg_price": 17.934675, "net_investment": 745.65, "weight_pct": 0.6066731853625174}, {"symbol": "PGNY", "shares": 181.95, "transactions": 16, "last_activity": "2023-05-24", "avg_price": 33.9008, "net_investment": -437.61, "weight_pct": -0.3560467412948317}, {"symbol": "ANDE", "shares": 101.778, "transactions": 6, "last_activity": "2024-06-07", "avg_price": 53.45195, "net_investment": 313.65, "weight_pct": 0.25519083294971306}, {"symbol": "TEAF", "shares": 690.882, "transactions": 61, "last_activity": "2023-11-14", "avg_price": 12.341857142857142, "net_investment": 303.24, "weight_pct": 0.24672108459643233}, {"symbol": "RWAY", "shares": 887.97, "transactions": 6, "last_activity": "2024-08-05", "avg_price": 11.4367, "net_investment": 236.88, "weight_pct": 0.19272948990635433}, {"symbol": "WM", "shares": 56.658, "transactions": 135, "last_activity": "2023-08-16", "avg_price": 160.077244, "net_investment": 199.77, "weight_pct": 0.16253617949422666}, {"symbol": "PRGS", "shares": 87.84, "transactions": 10, "last_activity": "2023-12-15", "avg_price": 53.3485, "net_investment": -28.86, "weight_pct": -0.023480973820910953}], "position_count": 36, "strategy_type": "Growth-Focused Strategy", "vertical_exposure": {"Infrastructure": 29.129456482869188, "Innovation": 31.145476315800053, "Lending": 21.140199320419427, "Real Estate": 16.724204667060434, "Other": 1.8606632138509078}, "strategy_info": {"name": "Core Growth Strategy", "description": "Primary growth-oriented strategy with concentrated positions", "characteristics": ["Growth-focused", "36 positions", "Top 5: 54.8%", "$122K+ AUM"], "color": "#667eea"}}, "20704": {"account_id": "20704", "total_value": 37644.52, "holdings": [{"symbol": "GMIIX", "shares": 284.81388, "transactions": 19, "last_activity": "2025-03-06", "avg_price": 19.81655123076923, "net_investment": 4821.01, "weight_pct": 12.806671462406749}, {"symbol": "ECAT", "shares": 620.691, "transactions": 64, "last_activity": "2025-05-30", "avg_price": 17.00066153846154, "net_investment": 4742.7, "weight_pct": 12.59864649622309}, {"symbol": "TEAF", "shares": 1147.406, "transactions": 89, "last_activity": "2025-05-30", "avg_price": 12.020745, "net_investment": 2811.56, "weight_pct": 7.468709921125306}, {"symbol": "MELI", "shares": 1.477, "transactions": 14, "last_activity": "2025-03-06", "avg_price": 1722.6785785714285, "net_investment": 1983.03, "weight_pct": 5.267778683324957}, {"symbol": "MID", "shares": 53.262, "transactions": 24, "last_activity": "2025-03-27", "avg_price": 57.2305, "net_investment": 1933.32, "weight_pct": 5.1357275906293935}, {"symbol": "VCISY", "shares": 66.669, "transactions": 29, "last_activity": "2025-05-09", "avg_price": 29.756588235294117, "net_investment": 1928.28, "weight_pct": 5.122339187748974}, {"symbol": "AGMPRG", "shares": 128.165, "transactions": 11, "last_activity": "2025-04-17", "avg_price": 20.453514285714284, "net_investment": 1793.39, "weight_pct": 4.764013460657754}, {"symbol": "NTDOY", "shares": 161.43912, "transactions": 54, "last_activity": "2025-03-06", "avg_price": 23.065509527777778, "net_investment": 1768.16, "weight_pct": 4.696991753381369}, {"symbol": "ARE", "shares": 40.571, "transactions": 74, "last_activity": "2025-04-15", "avg_price": 132.70693243243244, "net_investment": 1592.5, "weight_pct": 4.230363410132472}, {"symbol": "LI", "shares": 52.04, "transactions": 2, "last_activity": "2025-03-06", "avg_price": 28.7395, "net_investment": 1473.3, "weight_pct": 3.913717056293984}, {"symbol": "AGM", "shares": 33.21, "transactions": 66, "last_activity": "2025-03-31", "avg_price": 146.97487027027026, "net_investment": 1423.14, "weight_pct": 3.780470570484098}, {"symbol": "PLDGP", "shares": 42.705, "transactions": 12, "last_activity": "2025-03-31", "avg_price": 59.3793065, "net_investment": 1415.97, "weight_pct": 3.761423973529215}, {"symbol": "BMI", "shares": 16.647, "transactions": 52, "last_activity": "2025-03-14", "avg_price": 163.1690304347826, "net_investment": 1315.26, "weight_pct": 3.4938949945436946}, {"symbol": "AWEG", "shares": 111.775, "transactions": 19, "last_activity": "2025-03-06", "avg_price": 23.55522, "net_investment": 1304.99, "weight_pct": 3.466613467245698}, {"symbol": "BEEZ", "shares": 35.234, "transactions": 1, "last_activity": "2025-03-06", "avg_price": 31.44, "net_investment": 1107.76, "weight_pct": 2.942685947383577}, {"symbol": "LMND", "shares": 195.564, "transactions": 11, "last_activity": "2025-03-06", "avg_price": 18.66471818181818, "net_investment": 1052.88, "weight_pct": 2.796901116019012}, {"symbol": "SKM", "shares": 47.157, "transactions": 11, "last_activity": "2025-05-02", "avg_price": 22.4107, "net_investment": 1036.41, "weight_pct": 2.753149728034785}, {"symbol": "JSTC", "shares": 1314.152, "transactions": 34, "last_activity": "2024-03-13", "avg_price": 15.600630434782609, "net_investment": -1029.83, "weight_pct": -2.735670424274237}, {"symbol": "SUSC", "shares": 316.324, "transactions": 79, "last_activity": "2025-06-05", "avg_price": 23.041207692307694, "net_investment": 868.5, "weight_pct": 2.307108710643674}, {"symbol": "HOVNP", "shares": 50.07, "transactions": 4, "last_activity": "2025-04-15", "avg_price": 17.21, "net_investment": 861.15, "weight_pct": 2.287583956443063}, {"symbol": "MBNKP", "shares": 33.733, "transactions": 4, "last_activity": "2025-04-01", "avg_price": 25.26, "net_investment": 852.37, "weight_pct": 2.264260508568047}, {"symbol": "CROX", "shares": 36.949, "transactions": 37, "last_activity": "2025-03-06", "avg_price": 103.08235714285715, "net_investment": 770.19, "weight_pct": 2.045955161601211}, {"symbol": "BDORY", "shares": 149.153, "transactions": 20, "last_activity": "2025-04-01", "avg_price": 4.9586885, "net_investment": 739.58, "weight_pct": 1.9646418655358073}, {"symbol": "BLD", "shares": 9.608, "transactions": 36, "last_activity": "2024-09-03", "avg_price": 266.03449705882355, "net_investment": -728.66, "weight_pct": -1.9356336592948986}, {"symbol": "AHH", "shares": 509.744, "transactions": 71, "last_activity": "2025-03-06", "avg_price": 11.90266637837838, "net_investment": 609.41, "weight_pct": 1.6188544839992647}, {"symbol": "DUOL", "shares": 21.974, "transactions": 34, "last_activity": "2025-03-06", "avg_price": 158.82342325, "net_investment": -538.14, "weight_pct": -1.4295307789819076}, {"symbol": "CKHUY", "shares": 87.984, "transactions": 5, "last_activity": "2025-03-06", "avg_price": 5.895333333333333, "net_investment": 494.09, "weight_pct": 1.3125150752353862}, {"symbol": "HDSN", "shares": 87.381, "transactions": 1, "last_activity": "2025-03-06", "avg_price": 5.5299, "net_investment": 483.21, "weight_pct": 1.2836131261601955}, {"symbol": "PWR", "shares": 14.78255, "transactions": 71, "last_activity": "2025-03-06", "avg_price": 187.1917611111111, "net_investment": -453.32, "weight_pct": -1.2042124590777092}, {"symbol": "FLG", "shares": 41.753, "transactions": 12, "last_activity": "2025-03-17", "avg_price": 11.076666666666666, "net_investment": 449.01, "weight_pct": 1.1927632494716365}, {"symbol": "ENPH", "shares": 28.738, "transactions": 33, "last_activity": "2024-07-05", "avg_price": 178.24506451612902, "net_investment": 448.32, "weight_pct": 1.1909303133630076}, {"symbol": "ASML", "shares": 4.452, "transactions": 54, "last_activity": "2024-08-07", "avg_price": 696.9052928571429, "net_investment": -380.97, "weight_pct": -1.0120198105859766}, {"symbol": "CPRT", "shares": 64.31353, "transactions": 38, "last_activity": "2024-09-03", "avg_price": 77.80428529411765, "net_investment": -362.48, "weight_pct": -0.9629024357330099}, {"symbol": "AMAL", "shares": 90.581, "transactions": 29, "last_activity": "2025-05-22", "avg_price": 26.814175, "net_investment": 311.82, "weight_pct": 0.8283277353516529}, {"symbol": "ELF", "shares": 27.479, "transactions": 37, "last_activity": "2025-03-06", "avg_price": 97.8977, "net_investment": -284.95, "weight_pct": -0.7569494842808462}, {"symbol": "AMT", "shares": 6.344, "transactions": 33, "last_activity": "2023-07-18", "avg_price": 225.58316315789475, "net_investment": 248.11, "weight_pct": 0.6590866346549247}, {"symbol": "IIPR", "shares": 5.794, "transactions": 15, "last_activity": "2025-03-06", "avg_price": 122.32165555555555, "net_investment": 208.23, "weight_pct": 0.5531482404344643}, {"symbol": "862121100", "shares": 5.488, "transactions": 11, "last_activity": "2023-02-03", "avg_price": 31.185383333333334, "net_investment": 156.35, "weight_pct": 0.4153326964987202}, {"symbol": "RWAY", "shares": 499.546, "transactions": 12, "last_activity": "2024-08-07", "avg_price": 11.9862, "net_investment": 148.34, "weight_pct": 0.39405469906376817}, {"symbol": "WELL", "shares": 44.506, "transactions": 49, "last_activity": "2024-02-09", "avg_price": 80.75573973076924, "net_investment": -147.68, "weight_pct": -0.39230145582942755}, {"symbol": "BRX", "shares": 22.09034, "transactions": 33, "last_activity": "2023-07-18", "avg_price": 22.334442105263157, "net_investment": 131.01, "weight_pct": 0.34801878201661224}, {"symbol": "HDB", "shares": 40.754, "transactions": 43, "last_activity": "2024-02-09", "avg_price": 62.300215384615385, "net_investment": 98.56, "weight_pct": 0.26181765632819864}, {"symbol": "EFGSY", "shares": 70.93, "transactions": 5, "last_activity": "2025-03-06", "avg_price": 20.554, "net_investment": -91.72, "weight_pct": -0.24364768099048684}, {"symbol": "TDOC", "shares": 34.156, "transactions": 2, "last_activity": "2024-03-13", "avg_price": 18.0015, "net_investment": 85.62, "weight_pct": 0.22744346321855086}, {"symbol": "CTAS", "shares": 2.104, "transactions": 48, "last_activity": "2024-01-12", "avg_price": 454.86756, "net_investment": -82.9, "weight_pct": -0.22021797594975315}, {"symbol": "WPC", "shares": 13.15, "transactions": 32, "last_activity": "2023-05-24", "avg_price": 80.10877222222223, "net_investment": 76.73, "weight_pct": 0.20382780813781132}, {"symbol": "BXP", "shares": 13.548, "transactions": 26, "last_activity": "2023-07-18", "avg_price": 70.29472666666666, "net_investment": 68.1, "weight_pct": 0.1809028246342363}, {"symbol": "WM", "shares": 6.908, "transactions": 38, "last_activity": "2023-08-16", "avg_price": 160.9444761904762, "net_investment": 64.19, "weight_pct": 0.1705161866853396}, {"symbol": "H038059", "shares": 1.46893, "transactions": 14, "last_activity": "2022-08-03", "avg_price": 29.900766666666666, "net_investment": 54.68, "weight_pct": 0.1452535455359771}, {"symbol": "H197753", "shares": 1.70322, "transactions": 15, "last_activity": "2022-07-22", "avg_price": 27.476183333333335, "net_investment": 44.62, "weight_pct": 0.11852986835799739}, {"symbol": "CCI", "shares": 3.548, "transactions": 15, "last_activity": "2023-07-18", "avg_price": 121.553, "net_investment": 36.94, "weight_pct": 0.09812849254021569}, {"symbol": "ANDE", "shares": 11.932, "transactions": 2, "last_activity": "2024-06-07", "avg_price": 53.45195, "net_investment": 36.77, "weight_pct": 0.09767689958591584}, {"symbol": "PGNY", "shares": 13.948, "transactions": 6, "last_activity": "2023-05-24", "avg_price": 33.71575, "net_investment": -34.93, "weight_pct": -0.09278906996290563}, {"symbol": "EMNT", "shares": 174.97, "transactions": 42, "last_activity": "2023-12-13", "avg_price": 97.819668, "net_investment": -34.7, "weight_pct": -0.09217809126002936}, {"symbol": "BCC", "shares": 6.28, "transactions": 10, "last_activity": "2023-06-21", "avg_price": 70.65128, "net_investment": -29.02, "weight_pct": -0.0770895737281283}, {"symbol": "NPCT", "shares": 147.528, "transactions": 34, "last_activity": "2024-03-13", "avg_price": 9.90914, "net_investment": -25.5, "weight_pct": -0.06773894314497834}, {"symbol": "MGRC", "shares": 4.528, "transactions": 7, "last_activity": "2023-06-21", "avg_price": 94.16544, "net_investment": 18.83, "weight_pct": 0.05002056076156636}, {"symbol": "OHI", "shares": 14.476, "transactions": 30, "last_activity": "2023-04-26", "avg_price": 28.984825, "net_investment": -9.31, "weight_pct": -0.024731355320774445}, {"symbol": "ELS", "shares": 5.294, "transactions": 24, "last_activity": "2023-07-18", "avg_price": 66.57193846153847, "net_investment": 6.4, "weight_pct": 0.017001146514818096}, {"symbol": "PECO", "shares": 12.888, "transactions": 18, "last_activity": "2023-07-18", "avg_price": 31.895071428571427, "net_investment": 5.16, "weight_pct": 0.013707174377572089}, {"symbol": "PRGS", "shares": 10.96, "transactions": 4, "last_activity": "2023-12-15", "avg_price": 53.3485, "net_investment": -3.6, "weight_pct": -0.009563144914585178}, {"symbol": "CAOS", "shares": 16.366, "transactions": 2, "last_activity": "2024-05-07", "avg_price": 83.8031, "net_investment": 1.85, "weight_pct": 0.004914393914439605}, {"symbol": "FLOT", "shares": 57.444, "transactions": 25, "last_activity": "2023-12-13", "avg_price": 50.72982857142857, "net_investment": 0.43, "weight_pct": 0.0011422645314643407}], "position_count": 63, "strategy_type": "Diversified Growth Strategy", "vertical_exposure": {"Infrastructure": 27.17372021499333, "Innovation": 35.05097507940719, "Lending": 13.887059022406403, "Real Estate": 15.807611008296357, "Other": 8.080634674896729}, "strategy_info": {"name": "Diversified Strategy", "description": "Broad diversification with 63+ positions across all verticals", "characteristics": ["Highly diversified", "63 positions", "Top 5: 43.3%", "$37K+ AUM"], "color": "#764ba2"}}, "33055": {"account_id": "33055", "total_value": 201.65, "holdings": [{"symbol": "VCISY", "shares": 0.998, "transactions": 27, "last_activity": "2025-05-09", "avg_price": 29.7368, "net_investment": 28.71, "weight_pct": 14.237540292586164}, {"symbol": "MELI", "shares": 0.018, "transactions": 7, "last_activity": "2025-03-06", "avg_price": 1701.0943, "net_investment": 28.64, "weight_pct": 14.2028266798909}, {"symbol": "NTDOY", "shares": 2.627, "transactions": 35, "last_activity": "2025-03-06", "avg_price": 11.982555958333334, "net_investment": 24.11, "weight_pct": 11.956360029754524}, {"symbol": "LI", "shares": 0.77, "transactions": 2, "last_activity": "2025-03-06", "avg_price": 28.7395, "net_investment": 21.79, "weight_pct": 10.805851723282915}, {"symbol": "BMI", "shares": 0.229, "transactions": 50, "last_activity": "2025-06-06", "avg_price": 161.528865, "net_investment": 19.05, "weight_pct": 9.447061740639723}, {"symbol": "AGM", "shares": 0.447, "transactions": 43, "last_activity": "2025-03-31", "avg_price": 161.43844545454544, "net_investment": 18.75, "weight_pct": 9.298289114802875}, {"symbol": "LMND", "shares": 2.792, "transactions": 10, "last_activity": "2025-03-06", "avg_price": 18.88665, "net_investment": 15.87, "weight_pct": 7.870071906769153}, {"symbol": "SKM", "shares": 0.697, "transactions": 8, "last_activity": "2025-05-02", "avg_price": 22.414625, "net_investment": 15.36, "weight_pct": 7.617158442846515}, {"symbol": "BLD", "shares": 0.128, "transactions": 14, "last_activity": "2024-09-03", "avg_price": 299.56494166666664, "net_investment": -15.26, "weight_pct": -7.567567567567567}, {"symbol": "ENPH", "shares": 0.402, "transactions": 22, "last_activity": "2024-07-05", "avg_price": 165.201445, "net_investment": 15.23, "weight_pct": 7.552690304983884}, {"symbol": "ARE", "shares": 0.509, "transactions": 55, "last_activity": "2025-04-15", "avg_price": 121.44765833333334, "net_investment": 14.43, "weight_pct": 7.155963302752292}, {"symbol": "BDORY", "shares": 2.211, "transactions": 14, "last_activity": "2025-04-01", "avg_price": 4.9586885, "net_investment": 10.96, "weight_pct": 5.435159930572775}, {"symbol": "DUOL", "shares": 0.299, "transactions": 24, "last_activity": "2025-03-06", "avg_price": 163.55814745454546, "net_investment": -10.02, "weight_pct": -4.969005702950657}, {"symbol": "PWR", "shares": 0.20806, "transactions": 37, "last_activity": "2025-03-06", "avg_price": 204.84625, "net_investment": -7.7, "weight_pct": -3.818497396479048}, {"symbol": "CKHUY", "shares": 1.303, "transactions": 5, "last_activity": "2025-03-06", "avg_price": 5.895333333333333, "net_investment": 7.35, "weight_pct": 3.644929333002727}, {"symbol": "HDSN", "shares": 1.292, "transactions": 1, "last_activity": "2025-03-06", "avg_price": 5.5299, "net_investment": 7.14, "weight_pct": 3.5407884949169346}, {"symbol": "ASML", "shares": 0.06, "transactions": 23, "last_activity": "2024-08-07", "avg_price": 701.5273636363636, "net_investment": -7.02, "weight_pct": -3.481279444582196}, {"symbol": "FLG", "shares": 0.627, "transactions": 12, "last_activity": "2025-03-17", "avg_price": 11.073666666666666, "net_investment": 6.7, "weight_pct": 3.3225886436895613}, {"symbol": "AMAL", "shares": 1.297, "transactions": 28, "last_activity": "2025-05-22", "avg_price": 26.661354545454547, "net_investment": 4.79, "weight_pct": 2.3754029258616414}, {"symbol": "CROX", "shares": 0.518, "transactions": 27, "last_activity": "2025-03-06", "avg_price": 115.341448, "net_investment": 4.71, "weight_pct": 2.3357302256384824}, {"symbol": "WELL", "shares": 0.504, "transactions": 31, "last_activity": "2024-02-09", "avg_price": 77.71099285714286, "net_investment": -4.59, "weight_pct": -2.276221175303744}, {"symbol": "AHH", "shares": 5.933, "transactions": 55, "last_activity": "2025-03-06", "avg_price": 11.40797037037037, "net_investment": 3.31, "weight_pct": 1.6414579717332012}, {"symbol": "IIPR", "shares": 0.082, "transactions": 5, "last_activity": "2025-03-06", "avg_price": 102.04, "net_investment": 2.39, "weight_pct": 1.1852219191668734}, {"symbol": "CTAS", "shares": 0.03, "transactions": 25, "last_activity": "2024-10-02", "avg_price": 451.0514714285714, "net_investment": -2.31, "weight_pct": -1.1455492189437144}, {"symbol": "CPRT", "shares": 0.956, "transactions": 28, "last_activity": "2024-10-02", "avg_price": 63.75196, "net_investment": -2.06, "weight_pct": -1.0215720307463427}, {"symbol": "ELF", "shares": 0.402, "transactions": 25, "last_activity": "2025-03-06", "avg_price": 116.1208347826087, "net_investment": -1.73, "weight_pct": -0.8579221423258121}, {"symbol": "HDB", "shares": 0.602, "transactions": 25, "last_activity": "2024-02-09", "avg_price": 64.71773529411765, "net_investment": 1.71, "weight_pct": 0.8480039672700221}, {"symbol": "TDOC", "shares": 0.51, "transactions": 2, "last_activity": "2024-03-12", "avg_price": 17.934675, "net_investment": 1.31, "weight_pct": 0.6496404661542277}, {"symbol": "EFGSY", "shares": 1.044, "transactions": 4, "last_activity": "2025-03-06", "avg_price": 20.7575, "net_investment": -1.3, "weight_pct": -0.6446813786263328}, {"symbol": "PGNY", "shares": 0.332, "transactions": 6, "last_activity": "2023-05-24", "avg_price": 33.756925, "net_investment": -0.8, "weight_pct": -0.3967270022315894}, {"symbol": "AMT", "shares": 0.062, "transactions": 15, "last_activity": "2023-07-18", "avg_price": 202.40807142857142, "net_investment": 0.65, "weight_pct": 0.3223406893131664}, {"symbol": "TEAF", "shares": 1.218, "transactions": 21, "last_activity": "2023-11-14", "avg_price": 12.323833333333333, "net_investment": 0.58, "weight_pct": 0.28762707661790227}, {"symbol": "ANDE", "shares": 0.178, "transactions": 2, "last_activity": "2024-06-07", "avg_price": 53.45195, "net_investment": 0.55, "weight_pct": 0.2727498140342177}, {"symbol": "RWAY", "shares": 1.564, "transactions": 2, "last_activity": "2024-08-05", "avg_price": 11.4367, "net_investment": 0.42, "weight_pct": 0.20828167617158438}, {"symbol": "PRGS", "shares": 0.154, "transactions": 3, "last_activity": "2023-12-15", "avg_price": 53.3485, "net_investment": -0.05, "weight_pct": -0.024795437639474338}, {"symbol": "WM", "shares": 0.098, "transactions": 20, "last_activity": "2023-08-16", "avg_price": 160.6777, "net_investment": -0.02, "weight_pct": -0.009918175055789735}], "position_count": 36, "strategy_type": "Growth-Focused Strategy", "vertical_exposure": {"Infrastructure": 36.47793799850694, "Innovation": 37.60166594632823, "Lending": 17.02487132136262, "Real Estate": 7.909315940434561, "Other": 0.9862087933676477}, "strategy_info": {"name": "Model Portfolio (Reference)", "description": "Reference account with fractional shares for modeling", "characteristics": ["Model/Reference", "36 positions", "Fractional shares", "$200+ value"], "color": "#f093fb"}}};
+        
+        // Create vertical charts for each strategy
+        Object.keys(strategies).forEach(accountId => {
+            const strategy = strategies[accountId];
+            const ctx = document.getElementById('verticalChart' + accountId).getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Infrastructure', 'Innovation', 'Lending', 'Real Estate', 'Other'],
+                    datasets: [{
+                        data: [
+                            strategy.vertical_exposure.Infrastructure,
+                            strategy.vertical_exposure.Innovation,
+                            strategy.vertical_exposure.Lending,
+                            strategy.vertical_exposure['Real Estate'],
+                            strategy.vertical_exposure.Other
+                        ],
+                        backgroundColor: ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#cccccc'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { fontSize: 10 }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Strategy selection functions
+        function showAllStrategies() {
+            document.querySelectorAll('.strategy-card').forEach(card => {
+                card.style.display = 'block';
+            });
+            updateActiveButton('all');
+        }
+
+        function showStrategy(accountId) {
+            document.querySelectorAll('.strategy-card').forEach(card => {
+                card.style.display = 'none';
+            });
+            document.getElementById('strategy-' + accountId).style.display = 'block';
+            updateActiveButton(accountId);
+        }
+
+        function updateActiveButton(activeId) {
+            document.querySelectorAll('.strategy-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (activeId === 'all') {
+                document.querySelector('.strategy-btn').classList.add('active');
+            } else {
+                // Find and activate the specific strategy button
+                const buttons = document.querySelectorAll('.strategy-btn');
+                buttons.forEach(btn => {
+                    if (btn.onclick.toString().includes(activeId)) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
+    

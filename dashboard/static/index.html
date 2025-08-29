@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECIC Analysis Dashboard | Ethical Capital Investment Consulting</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard-compact.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#581c87">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ECIC Dashboard">
+</head>
+<body class="compact-layout">
+    <!-- Compact Header -->
+    <header class="compact-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="assets/ecic-logo.svg" alt="ECIC Logo" class="logo">
+                <div class="company-info">
+                    <h1>Ethical Capital</h1>
+                    <p>Investment Analysis Dashboard</p>
+                </div>
+            </div>
+            
+            <!-- Key Metrics in Header -->
+            <div class="header-metrics">
+                <div class="header-metric">
+                    <span class="metric-value">27,000+</span>
+                    <span class="metric-label">Universe Size</span>
+                </div>
+                <div class="header-metric">
+                    <span class="metric-value">~3,200</span>
+                    <span class="metric-label">Investable</span>
+                </div>
+                <div class="header-metric success">
+                    <span class="metric-value">4.18%</span>
+                    <span class="metric-label">Excess Return</span>
+                </div>
+                <div class="header-metric">
+                    <span class="metric-value">75%</span>
+                    <span class="metric-label">Success Rate</span>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <div class="search-compact">
+                    <input type="text" id="searchInput" placeholder="Search...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <button class="btn btn-outline btn-sm" id="settingsBtn">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="btn btn-primary btn-sm" id="exportBtn">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Tab Navigation -->
+        <nav class="tab-nav">
+            <div class="tab-nav-content">
+                <div class="tab-list">
+                    <button class="tab-item active" data-tab="overview">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Overview</span>
+                    </button>
+                    <button class="tab-item" data-tab="universe">
+                        <i class="fas fa-globe"></i>
+                        <span>Universe</span>
+                    </button>
+                    <button class="tab-item" data-tab="performance">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Performance</span>
+                    </button>
+                    <button class="tab-item" data-tab="truth-analysis">
+                        <i class="fas fa-search"></i>
+                        <span>Truth Analysis</span>
+                    </button>
+                    <button class="tab-item" data-tab="esg-studies">
+                        <i class="fas fa-leaf"></i>
+                        <span>ESG Studies</span>
+                    </button>
+                    <button class="tab-item" data-tab="presentations">
+                        <i class="fas fa-presentation-screen"></i>
+                        <span>Presentations</span>
+                    </button>
+                    <button class="tab-item" data-tab="documentation">
+                        <i class="fas fa-book"></i>
+                        <span>Documentation</span>
+                    </button>
+                </div>
+                
+                <!-- Status Indicators -->
+                <div class="status-bar">
+                    <div class="status-item">
+                        <span class="status-dot complete"></span>
+                        <span>Universe</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-dot complete"></span>
+                        <span>Truth-Seeking</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-dot in-progress"></span>
+                        <span>ESG Studies</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-dot pending"></span>
+                        <span>Final Reports</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <div class="compact-grid">
+                    <!-- Analysis Cards -->
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-chart-line"></i> Performance Summary</h3>
+                        <div class="metric-row">
+                            <div class="metric">
+                                <span class="value positive">+127.4%</span>
+                                <span class="label">Total Return</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">1.23</span>
+                                <span class="label">Sharpe Ratio</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value negative">-18.7%</span>
+                                <span class="label">Max Drawdown</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Truth Analysis Summary -->
+                    <div class="analysis-card truth-highlight">
+                        <h3><i class="fas fa-check-circle"></i> Truth Analysis Key Finding</h3>
+                        <p class="finding"><strong>Modest Positive Impact:</strong> Evidence suggests divestment may provide small positive excess returns.</p>
+                        <div class="metric-row">
+                            <div class="metric">
+                                <span class="value positive">4.18%</span>
+                                <span class="label">Mean Excess Return</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value positive">5.87%</span>
+                                <span class="label">Median Excess Return</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                        <div class="action-buttons">
+                            <button class="action-btn" onclick="navigateToTab('universe')">
+                                <i class="fas fa-globe"></i> Universe Analysis
+                            </button>
+                            <button class="action-btn" onclick="navigateToTab('truth-analysis')">
+                                <i class="fas fa-search"></i> Truth Results
+                            </button>
+                            <button class="action-btn" onclick="navigateToTab('presentations')">
+                                <i class="fas fa-presentation-screen"></i> Presentations
+                            </button>
+                            <button class="action-btn" onclick="exportAllData()">
+                                <i class="fas fa-download"></i> Export Data
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Updates -->
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-clock"></i> Recent Updates</h3>
+                        <div class="update-list">
+                            <div class="update-item">
+                                <span class="status-dot complete"></span>
+                                <div class="update-content">
+                                    <strong>Truth-Seeking Analysis Complete</strong>
+                                    <span class="timestamp">Aug 27, 2025</span>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <span class="status-dot complete"></span>
+                                <div class="update-content">
+                                    <strong>Universe Evolution Analysis</strong>
+                                    <span class="timestamp">Aug 27, 2025</span>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <span class="status-dot in-progress"></span>
+                                <div class="update-content">
+                                    <strong>ESG Impact Studies</strong>
+                                    <span class="timestamp">In Progress</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Universe Tab -->
+            <div id="universe" class="tab-content">
+                <div class="compact-grid two-col">
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-globe"></i> Market Scenarios</h3>
+                        <div class="scenario-tabs">
+                            <button class="scenario-tab active" data-scenario="bull">Bull</button>
+                            <button class="scenario-tab" data-scenario="bear">Bear</button>
+                            <button class="scenario-tab" data-scenario="volatile">Volatile</button>
+                        </div>
+                        <div class="scenario-metrics">
+                            <div class="metric-row">
+                                <div class="metric">
+                                    <span class="value" id="universeGrowth">93.61%</span>
+                                    <span class="label">Universe Growth</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="value" id="qualityRatio">67.81%</span>
+                                    <span class="label">Quality Ratio</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="value" id="concentrationRisk">0.159</span>
+                                    <span class="label">Concentration Risk</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-chart-bar"></i> Bias Analysis</h3>
+                        <div class="bias-grid">
+                            <div class="bias-item">
+                                <span class="bias-label">Size Bias</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 56%"></div>
+                                </div>
+                                <span class="bias-value">0.560</span>
+                            </div>
+                            <div class="bias-item">
+                                <span class="bias-label">Sector Bias</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 16%"></div>
+                                </div>
+                                <span class="bias-value">0.159</span>
+                            </div>
+                            <div class="bias-item">
+                                <span class="bias-label">Liquidity Bias</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 40%"></div>
+                                </div>
+                                <span class="bias-value">0.403</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-area"></i> Universe Evolution Chart</h3>
+                        <button class="btn btn-sm btn-outline" onclick="window.open('../ecic_universe_evolution.html', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> Full Chart
+                        </button>
+                    </div>
+                    <iframe src="../ecic_universe_evolution.html" 
+                            width="100%" 
+                            height="350" 
+                            frameborder="0"
+                            title="Universe Evolution Chart">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Performance Tab -->
+            <div id="performance" class="tab-content">
+                <div class="compact-grid two-col">
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-chart-line"></i> Backtesting Results</h3>
+                        <div class="metric-grid">
+                            <div class="metric">
+                                <span class="value positive">+127.4%</span>
+                                <span class="label">Total Return</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">1.23</span>
+                                <span class="label">Sharpe Ratio</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value negative">-18.7%</span>
+                                <span class="label">Max Drawdown</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">21.4%</span>
+                                <span class="label">Volatility</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-pie-chart"></i> Portfolio Composition</h3>
+                        <div class="composition-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Large Cap</span>
+                                <span class="stat-bar"><div class="fill" style="width: 65%"></div></span>
+                                <span class="stat-value">65%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Mid Cap</span>
+                                <span class="stat-bar"><div class="fill" style="width: 25%"></div></span>
+                                <span class="stat-value">25%</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Small Cap</span>
+                                <span class="stat-bar"><div class="fill" style="width: 10%"></div></span>
+                                <span class="stat-value">10%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-area"></i> Market Cap Breakdown</h3>
+                        <button class="btn btn-sm btn-outline" onclick="window.open('../ecic_market_cap_breakdown.html', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> Full Chart
+                        </button>
+                    </div>
+                    <iframe src="../ecic_market_cap_breakdown.html" 
+                            width="100%" 
+                            height="300" 
+                            frameborder="0"
+                            title="Market Cap Analysis">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- Truth Analysis Tab -->
+            <div id="truth-analysis" class="tab-content">
+                <div class="compact-grid">
+                    <div class="analysis-card truth-highlight full-width">
+                        <h3><i class="fas fa-check-circle"></i> Key Finding</h3>
+                        <p class="finding"><strong>Modest Positive Impact:</strong> Evidence suggests divestment may provide small positive excess returns, but implementation costs are real.</p>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-chart-line"></i> Performance Metrics</h3>
+                        <div class="metric-grid">
+                            <div class="metric">
+                                <span class="value positive">4.18%</span>
+                                <span class="label">Mean Excess Return</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value positive">5.87%</span>
+                                <span class="label">Median Excess Return</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">75%</span>
+                                <span class="label">Success Rate</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">21.37%</span>
+                                <span class="label">Tracking Error</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-file-alt"></i> Analysis Exhibits</h3>
+                        <div class="exhibit-list">
+                            <div class="exhibit-item" onclick="window.open('../experiments/truth_exhibits/cumulative_performance_20250827_004444.html', '_blank')">
+                                <i class="fas fa-chart-line"></i>
+                                <div class="exhibit-info">
+                                    <strong>Cumulative Performance</strong>
+                                    <span>Long-term comparison</span>
+                                </div>
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                            <div class="exhibit-item" onclick="window.open('../experiments/truth_exhibits/performance_reality_20250827_004444.html', '_blank')">
+                                <i class="fas fa-chart-bar"></i>
+                                <div class="exhibit-info">
+                                    <strong>Performance Reality</strong>
+                                    <span>Honest assessment</span>
+                                </div>
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                            <div class="exhibit-item" onclick="window.open('../experiments/truth_exhibits/complete_truth_20250827_004444.html', '_blank')">
+                                <i class="fas fa-file-alt"></i>
+                                <div class="exhibit-info">
+                                    <strong>Complete Analysis</strong>
+                                    <span>Full report</span>
+                                </div>
+                                <i class="fas fa-external-link-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESG Studies Tab -->
+            <div id="esg-studies" class="tab-content">
+                <div class="compact-grid two-col">
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-random"></i> Random Trader Analysis</h3>
+                        <p>Systematic analysis of random portfolio construction impacts on ESG outcomes</p>
+                        <div class="metric-row">
+                            <div class="metric">
+                                <span class="value">1,000+</span>
+                                <span class="label">Simulations Run</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">95%</span>
+                                <span class="label">Convergence Rate</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-sm" onclick="window.open('../presentation/generated_visuals/implementation_dashboard_20250827_033712.html', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> View Dashboard
+                        </button>
+                    </div>
+
+                    <div class="analysis-card">
+                        <h3><i class="fas fa-filter"></i> Exclusion Signal Analysis</h3>
+                        <p>Analysis of exclusion effectiveness across different market scenarios</p>
+                        <div class="metric-row">
+                            <div class="metric">
+                                <span class="value">15,000+</span>
+                                <span class="label">Companies Screened</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">89%</span>
+                                <span class="label">Accuracy Rate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-card">
+                    <h3><i class="fas fa-chart-pie"></i> ESG Impact Summary</h3>
+                    <div class="impact-grid">
+                        <div class="impact-item">
+                            <div class="impact-icon environmental">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="impact-content">
+                                <strong>Environmental</strong>
+                                <span>Carbon footprint reduction: 35%</span>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-icon social">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="impact-content">
+                                <strong>Social</strong>
+                                <span>Labor standards compliance: 92%</span>
+                            </div>
+                        </div>
+                        <div class="impact-item">
+                            <div class="impact-icon governance">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <div class="impact-content">
+                                <strong>Governance</strong>
+                                <span>Board diversity improvement: 28%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Presentations Tab -->
+            <div id="presentations" class="tab-content">
+                <div class="compact-grid three-col">
+                    <div class="presentation-card">
+                        <div class="presentation-header">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <h3>ECIC Divestment Deck</h3>
+                        </div>
+                        <p>Comprehensive presentation on divestment strategy and results</p>
+                        <div class="presentation-actions">
+                            <button class="btn btn-outline btn-sm" onclick="window.open('../_site/presentation/ecic-divest-deck.html', '_blank')">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="downloadPresentation('ecic-divest-deck')">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="presentation-card">
+                        <div class="presentation-header">
+                            <i class="fas fa-chart-pie"></i>
+                            <h3>Executive Summary</h3>
+                        </div>
+                        <p>High-level summary for executive audiences</p>
+                        <div class="presentation-actions">
+                            <button class="btn btn-outline btn-sm" onclick="window.open('../ecic_executive_summary.html', '_blank')">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="downloadPresentation('executive-summary')">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="presentation-card">
+                        <div class="presentation-header">
+                            <i class="fas fa-chart-area"></i>
+                            <h3>Universe Analysis</h3>
+                        </div>
+                        <p>Detailed slides on universe evolution and bias analysis</p>
+                        <div class="presentation-actions">
+                            <button class="btn btn-outline btn-sm" onclick="viewUniverseSlides()">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                            <button class="btn btn-primary btn-sm" onclick="downloadPresentation('universe-analysis')">
+                                <i class="fas fa-download"></i> Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-card">
+                    <h3><i class="fas fa-file-export"></i> Export Options</h3>
+                    <div class="export-grid">
+                        <button class="export-btn" onclick="exportData('pdf')">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>PDF Report</span>
+                        </button>
+                        <button class="export-btn" onclick="exportData('excel')">
+                            <i class="fas fa-file-excel"></i>
+                            <span>Excel Data</span>
+                        </button>
+                        <button class="export-btn" onclick="exportData('powerpoint')">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>PowerPoint</span>
+                        </button>
+                        <button class="export-btn" onclick="exportData('json')">
+                            <i class="fas fa-file-code"></i>
+                            <span>Raw Data</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentation Tab -->
+            <div id="documentation" class="tab-content">
+                <div class="compact-grid three-col">
+                    <div class="doc-card">
+                        <h3><i class="fas fa-cogs"></i> Analysis Methods</h3>
+                        <div class="doc-list">
+                            <a href="../README_UNBIASED_BACKTESTING.md" class="doc-link" target="_blank">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Unbiased Backtesting</span>
+                            </a>
+                            <a href="../UNIVERSE_EVOLUTION_SYSTEM_README.md" class="doc-link" target="_blank">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Universe Evolution</span>
+                            </a>
+                            <a href="../experiments/truth_analysis/methodology_20250827_004329.txt" class="doc-link" target="_blank">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Truth-Seeking Method</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3><i class="fas fa-sitemap"></i> System Architecture</h3>
+                        <div class="doc-list">
+                            <a href="../ARCHITECTURE_SUMMARY.md" class="doc-link" target="_blank">
+                                <i class="fas fa-sitemap"></i>
+                                <span>Architecture Overview</span>
+                            </a>
+                            <a href="../ECIC_BRANDING_SUMMARY.md" class="doc-link" target="_blank">
+                                <i class="fas fa-palette"></i>
+                                <span>Branding Guide</span>
+                            </a>
+                            <a href="../INTEGRATION_SUMMARY.md" class="doc-link" target="_blank">
+                                <i class="fas fa-plug"></i>
+                                <span>Integration Summary</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="doc-card">
+                        <h3><i class="fas fa-database"></i> Data Sources</h3>
+                        <div class="doc-list">
+                            <a href="../data/reference/data_catalog.json" class="doc-link" target="_blank">
+                                <i class="fas fa-database"></i>
+                                <span>Data Catalog</span>
+                            </a>
+                            <a href="../data/exclusions/exclusion_consolidation_report_20250825.md" class="doc-link" target="_blank">
+                                <i class="fas fa-leaf"></i>
+                                <span>ESG Data Report</span>
+                            </a>
+                            <a href="../README.md" class="doc-link" target="_blank">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Project README</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Compact Footer -->
+    <footer class="compact-footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <strong>Ethical Capital Investment Consulting</strong>
+                <span>hello@ethicic.com • +1 347 625 9000</span>
+            </div>
+            <div class="footer-center">
+                <div class="disclaimer">
+                    <strong>⚠️ PRELIMINARY ANALYSIS</strong> - Not yet reviewed. Results should not be used for investment decisions without proper review.
+                </div>
+            </div>
+            <div class="footer-right">
+                <span>Last Updated: <span id="lastUpdated">August 27, 2025</span></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Dashboard Settings</h3>
+                <button class="modal-close" onclick="closeModal('settingsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h4>Display Options</h4>
+                    <label class="setting-item">
+                        <input type="checkbox" id="darkMode" onchange="toggleDarkMode()">
+                        <span>Dark Mode</span>
+                    </label>
+                    <label class="setting-item">
+                        <input type="checkbox" id="compactView" onchange="toggleCompactView()">
+                        <span>Compact View</span>
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <h4>Analysis Options</h4>
+                    <label class="setting-item">
+                        <input type="checkbox" id="autoRefresh" onchange="toggleAutoRefresh()">
+                        <span>Auto-refresh Data</span>
+                    </label>
+                    <label class="setting-item">
+                        <input type="checkbox" id="showPreliminary" onchange="togglePreliminaryData()" checked>
+                        <span>Show Preliminary Results</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Export Data</h3>
+                <button class="modal-close" onclick="closeModal('exportModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="export-options">
+                    <h4>Select Export Format</h4>
+                    <div class="export-format-grid">
+                        <button class="export-option" onclick="exportData('pdf')">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>PDF Report</span>
+                        </button>
+                        <button class="export-option" onclick="exportData('excel')">
+                            <i class="fas fa-file-excel"></i>
+                            <span>Excel Data</span>
+                        </button>
+                        <button class="export-option" onclick="exportData('powerpoint')">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>PowerPoint Deck</span>
+                        </button>
+                        <button class="export-option" onclick="exportData('json')">
+                            <i class="fas fa-file-code"></i>
+                            <span>Raw Data (JSON)</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="export-sections">
+                    <h4>Select Sections</h4>
+                    <label class="setting-item">
+                        <input type="checkbox" checked> Executive Summary
+                    </label>
+                    <label class="setting-item">
+                        <input type="checkbox" checked> Universe Evolution
+                    </label>
+                    <label class="setting-item">
+                        <input type="checkbox" checked> Performance Analysis
+                    </label>
+                    <label class="setting-item">
+                        <input type="checkbox" checked> Truth-Seeking Results
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="components/dashboard-config.js"></script>
+    <script src="js/dashboard-compact.js"></script>
+</body>
+</html>

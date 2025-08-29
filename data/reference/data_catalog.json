@@ -1,0 +1,42 @@
+{
+  "sharadar": {
+    "path": "/content/drive/Shareddrives/Research/shared_data/fundamental_data/All_sharadar_tables24082025.zip",
+    "local_path": "/Users/srvo/Library/CloudStorage/GoogleDrive-sloane@ethicic.com/Shared drives/Research/shared_data/fundamental_data/All_sharadar_tables24082025.zip",
+    "type": "fundamental",
+    "format": "zip",
+    "size_gb": 2.0,
+    "description": "Sharadar fundamental data tables including SF1, SEP, TICKERS, and INDICATORS",
+    "tables": [
+      "SF1 - Core US Fundamental Data",
+      "SEP - S&P 500 Index Constituents",
+      "TICKERS - Ticker and Exchange Information",
+      "INDICATORS - Financial Indicators",
+      "EVENTS - Corporate Actions",
+      "SP500 - S&P 500 Historical Constituents"
+    ],
+    "update_frequency": "quarterly",
+    "last_updated": "2024-08-25"
+  },
+  "exclusions": {
+    "path": "/content/drive/Shareddrives/Research/shared_data/esg_data/Exclude.csv",
+    "local_path": "/Users/srvo/Library/CloudStorage/GoogleDrive-sloane@ethicic.com/Shared drives/Research/shared_data/esg_data/Exclude.csv",
+    "type": "esg",
+    "format": "csv",
+    "description": "ECIC exclusion list for ESG screening",
+    "categories": ["Product-based", "Conduct-based"],
+    "criteria": [
+      "Animal Testing",
+      "Animal Products",
+      "Fossil Fuels",
+      "Defense Contractor",
+      "Gambling",
+      "Failure of Oversight",
+      "Serious violations of individuals' rights",
+      "Emissions",
+      "Extractive Practices"
+    ],
+    "total_exclusions": 1000,
+    "update_frequency": "monthly",
+    "last_updated": "2024-08-24"
+  }
+}

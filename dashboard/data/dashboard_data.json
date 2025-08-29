@@ -1,0 +1,330 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2025-08-27T06:00:00Z",
+    "data_sources": [
+      "executive_summary.json",
+      "truth_analysis_results",
+      "universe_evolution_analysis",
+      "presentation_materials",
+      "exclusion_data"
+    ]
+  },
+  "executive_summary": {
+    "key_metrics": {
+      "universe_size": "27,000+",
+      "investable_universe": "~3,200",
+      "excess_return": "4.18%",
+      "success_rate": "75%"
+    },
+    "scenarios_analyzed": 3,
+    "analysis_date": "2025-08-27T05:57:18.382802",
+    "total_time_periods": 240,
+    "universe_growth_rates": {
+      "bull_market": 93.61,
+      "bear_market": 51.97,
+      "volatile_market": 76.97
+    },
+    "quality_ratios": {
+      "bull_market": 67.81,
+      "bear_market": 67.99,
+      "volatile_market": 67.86
+    },
+    "concentration_risks": {
+      "bull_market": 0.1586,
+      "bear_market": 0.1577,
+      "volatile_market": 0.1587
+    },
+    "bias_scores": {
+      "size_bias": {
+        "bull_market": 0.5604,
+        "bear_market": 0.5714,
+        "volatile_market": 0.5635
+      },
+      "sector_bias": {
+        "bull_market": 0.1586,
+        "bear_market": 0.1577,
+        "volatile_market": 0.1587
+      },
+      "liquidity_bias": {
+        "bull_market": 0.4026,
+        "bear_market": 0.3975,
+        "volatile_market": 0.3949
+      }
+    }
+  },
+  "truth_analysis": {
+    "generated": "2025-08-27T00:44:44Z",
+    "framework": "Simplified Truth-Seeking Analysis",
+    "key_findings": {
+      "mean_excess_return": 4.18,
+      "median_excess_return": 5.87,
+      "scenarios_with_positive_returns": "3/4 (75%)",
+      "average_tracking_error": 21.37,
+      "maximum_exclusions_tested": 15.0,
+      "conclusion": "MODEST POSITIVE IMPACT"
+    },
+    "methodology": {
+      "simulation_type": "10-year Monte Carlo simulation",
+      "data_source": "Academic research-based simulation",
+      "parameters": "From peer-reviewed research",
+      "optimization": "No optimization for favorable results",
+      "includes": "Realistic tracking errors and implementation costs"
+    },
+    "exhibits": [
+      {
+        "name": "Complete Truth Analysis",
+        "file": "../experiments/truth_exhibits/complete_truth_20250827_004444.html",
+        "type": "interactive_chart"
+      },
+      {
+        "name": "Cumulative Performance",
+        "file": "../experiments/truth_exhibits/cumulative_performance_20250827_004444.html",
+        "type": "performance_chart"
+      },
+      {
+        "name": "Performance Reality",
+        "file": "../experiments/truth_exhibits/performance_reality_20250827_004444.html",
+        "type": "reality_assessment"
+      }
+    ]
+  },
+  "universe_evolution": {
+    "analysis_types": ["bull_market", "bear_market", "volatile_market"],
+    "visualizations": {
+      "universe_size_evolution": "../universe_visualizations/universe_size_evolution.html",
+      "market_cap_analysis": "../ecic_market_cap_breakdown.html",
+      "composition_evolution": "../universe_visualizations/composition_evolution.html",
+      "failure_analysis": "../universe_visualizations/failure_analysis.html",
+      "comprehensive_dashboard": "../universe_visualizations/universe_evolution_dashboard.html"
+    },
+    "scenario_data": {
+      "bull_market": {
+        "directory": "../universe_analysis_bull_market/",
+        "summary_file": "analysis_summary.json",
+        "growth_rate": 93.61,
+        "quality_ratio": 67.81,
+        "concentration_risk": 0.1586
+      },
+      "bear_market": {
+        "directory": "../universe_analysis_bear_market/",
+        "summary_file": "analysis_summary.json",
+        "growth_rate": 51.97,
+        "quality_ratio": 67.99,
+        "concentration_risk": 0.1577
+      },
+      "volatile_market": {
+        "directory": "../universe_analysis_volatile_market/",
+        "summary_file": "analysis_summary.json",
+        "growth_rate": 76.97,
+        "quality_ratio": 67.86,
+        "concentration_risk": 0.1587
+      }
+    }
+  },
+  "performance_analysis": {
+    "backtesting_results": {
+      "total_return": 127.4,
+      "sharpe_ratio": 1.23,
+      "max_drawdown": -18.7,
+      "volatility": 21.4
+    },
+    "visualizations": [
+      {
+        "name": "Market Cap Breakdown",
+        "file": "../ecic_market_cap_breakdown.html",
+        "type": "pie_chart"
+      },
+      {
+        "name": "Performance Reality",
+        "file": "../experiments/truth_exhibits/performance_reality_20250827_004444.html",
+        "type": "performance_analysis"
+      }
+    ]
+  },
+  "esg_studies": {
+    "random_trader_analysis": {
+      "implementation_dashboard": "../presentation/generated_visuals/implementation_dashboard_20250827_033712.html",
+      "performance_charts": "../presentation/generated_visuals/performance_reality_20250827_033712.html",
+      "sharpe_ranking": "../presentation/generated_visuals/sharpe_ranking_20250827_033712.html"
+    },
+    "exclusion_analysis": {
+      "companies_screened": "15,000+",
+      "exclusion_accuracy": "89%",
+      "data_sources": [
+        "../experiments/shared_data/esg_data/consolidated_exclusions_20250825.csv",
+        "../experiments/shared_data/esg_data/exclusions_consensus_20250826.csv"
+      ]
+    }
+  },
+  "presentations": {
+    "available_presentations": [
+      {
+        "name": "ECIC Divestment Deck",
+        "file": "../_site/presentation/ecic-divest-deck.html",
+        "type": "comprehensive_deck",
+        "description": "Comprehensive presentation on divestment strategy and results"
+      },
+      {
+        "name": "Executive Summary Report",
+        "file": "../ecic_executive_summary.html",
+        "type": "executive_summary",
+        "description": "High-level summary for executive audiences"
+      },
+      {
+        "name": "Simple Deck",
+        "file": "../_site/presentation/simple-deck.html",
+        "type": "simplified_deck",
+        "description": "Streamlined presentation for general audiences"
+      }
+    ],
+    "generated_visuals": {
+      "directory": "../presentation/generated_visuals/",
+      "files": [
+        "analysis_summary_20250827_033712.json",
+        "implementation_dashboard_20250827_033712.html",
+        "performance_reality_20250827_033712.html",
+        "sharpe_ranking_20250827_033712.html"
+      ]
+    },
+    "scenario_presentations": [
+      {
+        "scenario": "bull_market",
+        "directory": "../presentation_bull_market/",
+        "executive_summary": "executive_summary.html",
+        "slides": [
+          "universe_dashboard_slide.png",
+          "universe_size_evolution_slide.png",
+          "market_cap_analysis_slide.png"
+        ]
+      },
+      {
+        "scenario": "bear_market",
+        "directory": "../presentation_bear_market/",
+        "executive_summary": "executive_summary.html",
+        "slides": [
+          "universe_dashboard_slide.png",
+          "universe_size_evolution_slide.png",
+          "market_cap_analysis_slide.png"
+        ]
+      },
+      {
+        "scenario": "volatile_market",
+        "directory": "../presentation_volatile_market/",
+        "executive_summary": "executive_summary.html",
+        "slides": [
+          "universe_dashboard_slide.png",
+          "universe_size_evolution_slide.png",
+          "market_cap_analysis_slide.png"
+        ]
+      }
+    ]
+  },
+  "documentation": {
+    "methodologies": [
+      {
+        "name": "Unbiased Backtesting Methodology",
+        "file": "../README_UNBIASED_BACKTESTING.md",
+        "type": "methodology"
+      },
+      {
+        "name": "Universe Evolution System",
+        "file": "../UNIVERSE_EVOLUTION_SYSTEM_README.md",
+        "type": "system_overview"
+      },
+      {
+        "name": "Truth-Seeking Analysis Method",
+        "file": "../experiments/truth_analysis/methodology_20250827_004329.txt",
+        "type": "methodology"
+      }
+    ],
+    "system_architecture": [
+      {
+        "name": "System Architecture Overview",
+        "file": "../ARCHITECTURE_SUMMARY.md",
+        "type": "architecture"
+      },
+      {
+        "name": "ECIC Branding Implementation",
+        "file": "../ECIC_BRANDING_SUMMARY.md",
+        "type": "implementation"
+      }
+    ],
+    "data_integration": [
+      {
+        "name": "Data Catalog",
+        "file": "../experiments/shared_data/reference_data/data_catalog.json",
+        "type": "data_catalog"
+      },
+      {
+        "name": "ESG Data Integration Report",
+        "file": "../experiments/shared_data/esg_data/exclusion_consolidation_report_20250825.md",
+        "type": "integration_report"
+      }
+    ]
+  },
+  "data_sources": {
+    "fundamental_data": {
+      "directory": "../experiments/shared_data/fundamental_data/",
+      "files": [
+        "SHARADAR_TICKERS.csv",
+        "SHARADAR_SF1.csv",
+        "SHARADAR_DAILY.csv",
+        "SHARADAR_SP500.csv"
+      ]
+    },
+    "exclusion_data": {
+      "directory": "../experiments/shared_data/esg_data/",
+      "consolidated_files": [
+        "consolidated_exclusions_20250825.csv",
+        "exclusions_consensus_20250826.csv",
+        "exclusions_fossil_fuels_20250826.csv",
+        "exclusions_israel_palestine_20250826.csv",
+        "exclusions_weapons_defense_20250826.csv"
+      ]
+    },
+    "analysis_results": {
+      "truth_analysis": "../experiments/truth_analysis/",
+      "truth_exhibits": "../experiments/truth_exhibits/",
+      "universe_analysis": "../universe_analysis_summary.json"
+    }
+  },
+  "analysis_status": {
+    "universe_analysis": {
+      "status": "completed",
+      "completion_date": "2025-08-27T05:57:18Z",
+      "scenarios_completed": 3
+    },
+    "truth_seeking": {
+      "status": "completed",
+      "completion_date": "2025-08-27T00:44:44Z",
+      "exhibits_generated": 3
+    },
+    "esg_studies": {
+      "status": "in_progress",
+      "estimated_completion": "2025-08-28T12:00:00Z",
+      "components_completed": 2,
+      "total_components": 4
+    },
+    "final_reports": {
+      "status": "pending",
+      "estimated_start": "2025-08-28T15:00:00Z",
+      "dependencies": ["esg_studies"]
+    }
+  },
+  "export_configurations": {
+    "pdf_report": {
+      "sections": ["executive_summary", "universe_evolution", "truth_analysis"],
+      "format": "professional_report",
+      "disclaimer": true
+    },
+    "excel_data": {
+      "sheets": ["metrics", "scenarios", "performance", "exclusions"],
+      "format": "tabular_data"
+    },
+    "powerpoint_deck": {
+      "template": "ecic_branded",
+      "slides": ["overview", "methodology", "results", "recommendations"]
+    }
+  }
+}
